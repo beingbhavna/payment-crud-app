@@ -1,0 +1,98 @@
+<br />
+<br />
+<form
+  novalidate
+  autocomplete="off"
+  #form="ngForm"
+  (submit)="onSubmit(form)"
+  #imageForm="ngForm"
+  (ngSubmit)="OnSubmit(Caption, Image)"
+>
+  <input
+    type="hidden"
+    name="paymentDetailId"
+    [value]="service.formData.paymentDetailId"
+  />
+  <div class="form-group">
+    <label>CARD OWNER NAME</label><br />
+    <input
+      class="form-control form-control-lg"
+      placeholder="Full Name"
+      name="cardOwnerName"
+      #cardOwnerName="ngModel"
+      [(ngModel)]="service.formData.cardOwnerName"
+      required
+    />
+  </div>
+  <br />
+  <div class="form-group">
+    <label>CARD NUMBER</label>
+    <input
+      class="form-control form-control-lg"
+      placeholder="16 Digit Card Number"
+      name="cardNumber"
+      #cardNumber="ngModel"
+      [(ngModel)]="service.formData.cardNumber"
+      required
+      maxlength="16"
+      minlength="16"
+    />
+  </div>
+  <br />
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label>SECURITY CODE</label>
+      <input
+        class="form-control form-control-lg"
+        placeholder="securityCode"
+        name="securityCode"
+        #securityCode="ngModel"
+        [(ngModel)]="service.formData.securityCode"
+        required
+        maxlength="3"
+        minlength="3"
+      />
+    </div>
+    <br />
+    <div class="form-group col-md-6">
+      <label>VALIDE THROUGH</label>
+      <input
+        class="form-control form-control-lg"
+        placeholder="MM/YY"
+        name="expirationDate"
+        #expirationDate="ngModel"
+        [(ngModel)]="service.formData.expirationDate"
+        required
+        maxlength="5"
+        minlength="5"
+      />
+    </div>
+  </div>
+  <br />
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <input type="text" #Caption ngModel name="Caption" id="Caption" />
+      <label for="Caption">Caption</label>
+    </div>
+  </div>
+  <br />
+  <img [src]="imageUrl" style="width: 200px; height: 150px" />
+  <input
+    type="file"
+    #Image
+    accept="image/*"
+    (change)="handleFileInput($event)"
+  />
+</form>
+<br />
+
+<div class="form-group">
+  <button
+    (click)="onSubmit(form)"
+    class="btn btn-info btn-lg btn-block submit"
+    type="submit"
+    [disabled]="form.invalid"
+  >
+    SUBMIT
+  </button>
+</div>
